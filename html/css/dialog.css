@@ -1,0 +1,343 @@
+.input-dialog {
+	padding: 0! important;
+}
+
+.input-dialog input {
+	width: 100%;
+	background-color: #fff;
+    border: 1px solid #bcbcbc;
+    padding: 4px 6px;
+    outline: 0;
+    box-sizing: border-box;
+    border-radius: 2px;
+    min-height: 28px;
+    margin-left: 1px;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.input-dialog textarea {
+	width: 100%;
+	background-color: #fff;
+    border: 1px solid #bcbcbc;
+    padding: 4px 6px;
+    outline: 0;
+    box-sizing: border-box;
+    border-radius: 2px;
+    min-height: 28px;
+    margin-left: 1px;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.input-dialog .dialog-full-select {
+    width: 135px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #fff;
+    border: 1px solid #bcbcbc;
+    padding: 3px 3px 3px 6px;
+    outline: 0;
+    border-radius: 2px;
+    margin: 0 1px;
+    box-sizing: border-box;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.cke-all {
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+}
+
+.ui-dialog-background {
+    z-index: 10010! important;
+}
+
+.ui-dialog-header {
+	font-weight: bold! important;
+    font-size: 12px! important;
+    cursor: move! important;
+    position: relative! important;
+    color: #484848! important;
+    border-bottom: 1px solid #d1d1d1! important;
+    padding: 12px 19px 12px 12px! important;
+    background: #f8f8f8! important;
+    letter-spacing: .3px! important;
+}
+
+.ui-dialog-footer {
+    text-align: right;
+    position: relative;
+    border-top: 1px solid #d1d1d1;
+    background: #f8f8f8;
+    padding: 5px;
+}
+
+.dialog-body-label {
+	font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+	display: inline;
+    cursor: default;
+    letter-spacing: .3px;
+}
+
+.dialog-checkbox {
+    min-height: 13px! important;
+    width: 13px! important; 
+}
+
+.dialog-number-input {
+    width: 50px! important;
+}
+
+.dialog-tab-ul{
+    background: #fff! important;
+}
+
+.dialog-tab-li {
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+    background: #fff! important;
+    border-bottom-color: #fff;
+    cursor: default;
+    filter: none;
+    /* border: 2px solid #139ff7! important; */
+}
+
+.dialog-oneline-input {
+    width: 75%! important;
+    float: right! important;
+}
+
+.dialog-tab-a {
+    color: #002242! important;
+    padding: 0.8em 1em! important;
+}
+
+.ui-dialog-btn {
+	display: inline-block;
+    margin: 0;
+    text-align: center;
+    color: #484848;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #bcbcbc;
+    border-radius: 2px;
+    background: #f8f8f8;
+    letter-spacing: .3px;
+    line-height: 18px;
+    box-sizing: border-box;
+    font-size: 12px! important;
+    font-weight: bold! important;
+    padding: 4px 12px;
+    /*font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;*/
+}
+
+.ui-selection-body {
+    height: 360px;
+}
+
+.ui-textarea-body {
+    height: 217px;
+}
+
+.ui-button-body{
+    height: 185px;
+}
+
+.ui-ink-body {
+    height: 270px;
+}
+
+.ui-date-body {
+    height: 210px;
+}
+
+.ui-text-body {
+    height: 160px;
+}
+
+.ui-geo-body {
+    height: 190px;
+}
+
+.ui-dialog-ok {    
+    color: #fff;
+    background: #09863e;
+    border: 1px solid #09863e;
+}
+
+.ui-dialog-cancel {
+	
+}
+
+.ui-dialog-button {
+    display: inline-block;
+    height: 28px;
+    padding: 4px 1px;
+    text-align: center;
+    color: #000000;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #bcbcbc;
+    border-radius: 2px;
+    background: #f8f8f8;
+    letter-spacing: .3px;
+    line-height: 18px;
+    box-sizing: border-box;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.ui-selection-style {
+    width: 55%;
+    float: left;
+}
+
+.ui-selection-id {
+    width: 40%;
+    float: right;
+}
+
+.ui-sel-margin {
+    min-width: 50px;
+    max-width: 188px;
+    margin-top: 10px;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.full-width-ui {
+	padding: 9px 10px 5px 10px;
+}
+
+.half-width-ui {
+    width: calc(50% - 10px);
+    padding-right: 10px;
+    float: left;
+    padding-bottom: 7px;
+}
+
+.half-width-ui-last {
+    float: left;
+    width: 50%;
+    padding-bottom: 7px;
+}
+
+.half-7width-ui {
+    width: calc(70% - 10px);
+    padding-right: 10px;
+    float: left;
+    padding-bottom: 7px;
+}
+
+.half-7width-ui-last {
+    float: left;
+    width: 30%;
+    padding-bottom: 7px;
+}
+
+.half-6width-ui {
+    width: calc(60% - 10px);
+    padding-right: 10px;
+    float: left;
+    padding-bottom: 7px;
+}
+
+.half-6width-ui-last {
+    float: left;
+    width: 40%;
+    padding-bottom: 7px;
+}
+
+.half-3width-ui {
+    width: calc(30% - 10px);
+    padding-right: 10px;
+    float: left;
+    padding-bottom: 7px;
+}
+
+.half-3width-ui-last {
+    float: left;
+    width: 70%;
+    padding-bottom: 7px;
+}
+
+.half-width-input {
+    width: 50%! important;
+}
+
+.dialog-selection-option {
+    width: 80%! important;
+}
+
+.dialog-selection-button {
+    width: 100%;
+    margin: 5px;    
+    height: 26px;
+}
+
+.dialog-selection-dirBtn {
+    width: calc(20% - 10px)! important;
+    float: right;
+    margin-left: 10px;
+}
+
+.selectioin-default-div {
+    width: 60%! important;
+    float: left;
+}
+
+.selectioin-delete-div {
+    width: 40%! important;
+    float: right;
+}
+
+.dialog-selection-default {
+    width: 50%;
+    margin: 5px 0;
+}
+
+.dialog-selection-delete {
+    width: 30%;
+    margin: 5px 0;
+}
+
+.full-width-label {
+    width: 100%;
+    margin: 10px 0;
+    float: left;
+}
+
+.label-span-cover {
+    color: #888;
+}
+
+.dialog-selection-fill{
+    padding: 7px;
+}
+
+.dialog-selection-select {
+    height: 28px;
+    line-height: 28px;
+    background-color: #fff;
+    border: 1px solid #bcbcbc;
+    padding: 3px 3px 3px 6px;
+    outline: 0;
+    border-radius: 2px;
+    margin: 0 1px;
+    box-sizing: border-box;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif! important;
+}
+
+.dialog-selection-height {
+    width: 86px! important;
+}
+
+#file_dialog_body {
+	width: 100%;
+	height: 100px;
+}
+
+#simple-date-span {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 9px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20fill%3D%22%23010202%22%20d%3D%22M0%206h3v3H0V6zm4%203h3V6H4v3zm4%200h3V6H8v3zm4%200h3V6h-3v3zm0-7v3h3V2h-3zM8%205h3V2H8v3zM4%205h3V2H4v3zm-4%208h3v-3H0v3zm4%200h3v-3H4v3zm4%200h3v-3H8v3z%22%2F%3E%3C%2Fsvg%3E');
+}

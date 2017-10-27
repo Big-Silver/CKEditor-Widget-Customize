@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Drag and Drop Integration</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/dialog.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="../ckeditor.js"></script>
+	<!-- <script src="js/dnd.js"></script> -->
+	<!-- <script src="../plugins/lux_forms/plugin_orig.js"></script> -->
+	<style>
+		.datePicker_image {
+			width: 16px;
+		    height: 16px;
+		    display: inline-block;
+		    margin-right: 9px;
+		    background-position: center center;
+		    background-repeat: no-repeat;
+		    background-image: url(img/navigation-tip.png);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cke_background_cover">				
+	</div>
+	<div>
+		<div class="columns">		
+			<div class="contacts">
+				<h3>Content Blocks</h3>
+				<ul id="contactList">
+					<li>
+						<div class="contact h-card" data-contact="0" draggable="true" tabindex="0">
+							<img src="img/content-block/textfield.png" class="u-photo">Text</div>
+					</li>
+					<!-- <li>
+						<div class="contact h-card" data-contact="1" draggable="true" tabindex="0">
+							<img src="img/content-block/form.png" class="u-photo">Image</div>
+					</li> -->
+					<li>
+						<div class="contact h-card" data-contact="2" draggable="true" tabindex="0">
+							<img src="img/content-block/button.png" class="u-photo">Button</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="3" draggable="true" tabindex="0">
+							<img src="img/content-block/checkbox.png" class="u-photo">CheckBox</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="4" draggable="true" tabindex="0">
+							<img src="img/content-block/radio.png" class="u-photo">Radio Button</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="5" draggable="true" tabindex="0">
+							<img src="img/content-block/textarea.png" class="u-photo">TextArea</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="6" draggable="true" tabindex="0">
+							<img src="img/content-block/hiddenfield.png" class="u-photo">Hidden Field</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="7" draggable="true" tabindex="0">
+							<img src="img/content-block/ink.png" class="u-photo">Ink Signature</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="8" draggable="true" tabindex="0">
+							<img src="img/content-block/cal.png" class="u-photo">Date Picker</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="9" draggable="true" tabindex="0">
+							<img src="img/content-block/file.png" class="u-photo">File Upload</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="10" draggable="true" tabindex="0">
+							<img src="img/content-block/geo.png" class="u-photo">Capture Geo Location</div>
+					</li>
+					<li>
+						<div class="contact h-card" data-contact="11" draggable="true" tabindex="0">
+							<img src="img/content-block/select.png" class="u-photo">Selection Field</div>
+					</li>
+				</ul>			
+			</div>
+			<div class="editor">
+				<div cols="10" id="editor" name="editor" rows="10" >
+					<h1>CKEditor Drag and Drop Form Builder</h1>
+					<div contenteditable="true">
+						<p>Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.
+							Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames ac.</p>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div id="btn_dialog" class="input-dialog" title="Button Properties" style="display: none">
+		<div id="button_tabs">
+			<ul class="dialog-tab-ul">
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#button_tabs_basic">Basic Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#button_tabs_advanced">Advanced Settings</a></li>
+			</ul>
+			<div id="button_tabs_basic" class="ui-button-body">
+				<div class="full-width-ui">
+					<label class="dialog-body-label">Button Text
+						<span class="label-span-cover"> (e.g. "Submit Form")</span>
+					</label>
+					<input id="input_btn_name" type="text">
+				</div>
+				<div class="full-width-ui">
+					<label class="dialog-body-label">Button Name
+						<span class="label-span-cover"> (optional)</span>
+					</label>
+					<input id="input_btn_value" type="text">	
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Type</label>
+					<select id="select_button_type" class="dialog-selection-select">
+						<option value="submit">Submit Form</option>
+						<option value="save">Save Form Progress</option>
+						<option value="javascript">Javascript Button</option>
+						<option value="reset">Reset Form</option>
+					</select>
+				</div>
+			</div>
+			<div id="button_tabs_advanced" class="ui-button-body">
+				<div class="full-width-ui">
+					<div class="ui-selection-style">
+						<label class="dialog-body-label">CSS Inline Style(s)
+							<span class="label-span-cover"> (optional)</span>
+						</label>
+						<input id="input_btn_style" type="text">
+					</div>
+					<div class="ui-selection-id">
+						<label class="dialog-body-label">CSS Class(es)
+							<span class="label-span-cover"> (optional)</span>
+						</label>
+						<input id="input_btn_class" type="text">
+					</div>							
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Element ID
+						<span class="label-span-cover"> (optional)</span>
+					</label>
+					<input id="input_btn_id" class="half-width-input" type="text">	
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_btn_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_btn_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>			
+	</div>
+
+	<div id="img_dialog" class="input-dialog"  title="Image Properties" style="display: none">
+		<label>URL: </label>
+		<input id="input_img_src" type="text">
+		<label>Width: </label>
+		<input id="input_img_width" type="number">
+		<label>Height: </label>
+		<input id="input_img_height" type="number">
+		<button id="input_img_ok">OK</button>
+		<button id="input_img_cancel">Cancel</button>
+	</div>
+
+	<div id="text_dialog" class="input-dialog" title="Text Field Properties" style="display: none">
+		<div id="text_tabs">
+			<ul class="dialog-tab-ul">
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#text_tabs_basic">Basic Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#text_tabs_validation">Validation Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#text_tabs_advanced">Advanced Settings</a></li>
+			</ul>
+			<div id="text_tabs_basic" class="ui-text-body">
+				<div class="full-width-ui">
+					<div class="half-7width-ui">
+						<label class="full-width-label dialog-body-label">Name
+							<span class="label-span-cover"> (Required; make unique/descriptive)</span>
+						</label>				
+						<input id="input_text_name" type="text">
+					</div>
+					<div class="half-7width-ui-last">
+						<label class="full-width-label dialog-body-label">Size: Character Width</label>				
+						<input id="input_text_width" type="number">		
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Initial Value
+						<span class="label-span-cover"> optional</span>
+					</label>				
+					<input id="input_text_value" type="text">
+				</div>
+			</div>
+			<div id="text_tabs_validation" class="ui-text-body">
+				<div class="full-width-ui">
+					<div class="half-3width-ui">
+						<label class="full-width-label dialog-body-label">Required?</label>
+						<select id="select_text_required" class="dialog-selection-select">
+							<option value="false">No: Empty OK</option>
+							<option value="true">Yes: Input needed</option>
+						</select>
+					</div>
+					<div class="half-3width-ui-last">
+						<label class="full-width-label dialog-body-label">Validate Content As</label>
+						<select id="select_text_validate" class="dialog-selection-select">
+							<option value="text">Text (anything)</option>
+							<option value="email">Email Address (e.g. joe@domain.com)</option>
+							<option value="phone_usa">Phone Number (e.g. 123-456-7890 or +1-800-122-4567)</option>
+							<option value="phone">Phone Number: Any (relaxed format; contry code optional)</option>
+							<option value="number">Number: Floating (e.g. -143.22 or .77 but also + 234,23)</option>
+							<option value="integer">Number: Integer (eg. -635 or +2201 or 738)</option>
+							<option value="zip">US Zip Code (e.g. 12345 or 12345-6789)</option>
+							<option value="ssn">Social Security Number (eg.123-56-6789)</option>
+							<option value="password">Password</option>
+							<option value="url">URL (web site address)</option>
+							<option value="ipv4">IPv4 (e.g. 127.0.0.2)</option>
+						</select>	
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Maximum Characters</label>
+					<input id="input_text_maximum" class="dialog-selection-height" type="number">
+				</div>
+			</div>
+			<div id="text_tabs_advanced" class="ui-text-body">
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Placeholder Value
+						<span class="label-span-cover"> optional</span>
+					</label>
+					<input id="input_text_placeholder" type="text">
+				</div>
+				<div class="full-width-ui">
+					<div class="half-6width-ui">
+						<label class="full-width-label dialog-body-label">CSS Inline Style(s) 
+							<span class="label-span-cover"> optional</span>
+						</label>
+						<input id="input_text_style" type="text">
+					</div>
+					<div class="half-6width-ui-last">
+						<label class="full-width-label dialog-body-label">Element ID 
+							<span class="label-span-cover"> optional</span>
+						</label>
+						<input id="input_text_id" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_text_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_text_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="check_dialog" class="input-dialog" title="CheckBox Properties" style="display: none">
+		<div id="check_dialog_body">
+			<div class="full-width-ui">
+				<label class="dialog-body-label">Name</label>
+				<input id="input_check_name" type="text">
+			</div>
+			<div class="full-width-ui">
+				<label class="dialog-body-label">Value</label>
+				<input id="input_check_value" type="text">
+			</div>
+			<div class="full-width-ui">
+				<input id="input_check_select" class="dialog-checkbox" type="checkbox">
+				<label class="dialog-body-label">Checked by default?</label>	
+			</div>
+			<div class="full-width-ui">
+				<label class="dialog-body-label full-width-label">Required?</label>
+				<select id="select_check_required"
+				class="dialog-selection-select">
+					<option value="no">No: Unchecked OK</option>
+					<option value="yes">Yes: User must check this box</option>
+				</select>
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_check_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_check_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>			
+	</div>
+
+	<div id="radio_dialog" class="input-dialog" title="Radio Button Properties" style="display: none">
+		<div id="check_dialog_body">
+			<div class="full-width-ui">
+				<label class="dialog-body-label">Name</label>
+				<input id="input_radio_name" type="text">
+			</div>
+			<div class="full-width-ui">
+				<p class="dialog-body-label">Note: Use the same "Name" for all mutually-exclusive radio buttons in a group.</p>
+			</div>
+			<div class="full-width-ui">
+				<label class="dialog-body-label">Value</label>
+				<input id="input_radio_value" type="text">	
+			</div>
+			<div class="full-width-ui">					
+				<input id="input_radio_select" class="dialog-checkbox" type="checkbox">
+				<label class="dialog-body-label">Checked by default?</label>
+			</div>
+			<div class="full-width-ui">					
+				<input id="input_radio_required" checked="checked" class="dialog-checkbox" type="checkbox">
+				<label class="dialog-body-label">Required?</label>	
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_radio_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_radio_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>		
+	</div>
+
+	<div id="textarea_dialog" class="input-dialog" title="Textarea Properties" style="display: none">
+		<div id="textarea_tabs">
+			<ul class="dialog-tab-ul">
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#textarea_tabs_basic">Basic Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#textarea_tabs_validation">Validation Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#textarea_tabs_advanced">Advanced Settings</a></li>
+			</ul>
+			<div id="textarea_tabs_basic" class="ui-textarea-body">
+				<div class="full-width-ui">
+					<div class="dialog-selection-option">
+						<div class="half-7width-ui">
+							<label class="dialog-body-label">Name
+								<span class="label-span-cover"> (Required; make unique/descriptive)</span>
+							</label>
+							<input id="input_textarea_name" type="text">
+						</div>
+						<div class="half-7width-ui-last">
+							<label class="dialog-body-label">Characters Wide</label>
+							<input id="input_textarea_wide" type="number">
+						</div>
+					</div>
+					<div class="dialog-selection-dirBtn">
+						<label class="dialog-body-label">Lines Tall</label>
+						<input id="input_textarea_tall" type="number">
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Initial Value
+						<span class="label-span-cover"> option</span>
+					</label>
+					<textarea id="input_textarea_value" cols="20" rows="5"></textarea>
+				</div>
+			</div>
+			<div id="textarea_tabs_validation" class="ui-textarea-body">
+				<div class="full-width-ui">
+					<div class="half-width-ui">
+						<label class="full-width-label dialog-body-label">Required?</label>
+						<select id="select_textarea_required" class="dialog-selection-select">
+							<option value="false">No: Empty OK</option>
+							<option value="true">Yes: Input needed</option>
+						</select>
+					</div>
+					<div class="half-width-ui-last">
+						<label class="full-width-label dialog-body-label">Max. Characters</label>
+						<input id="input_textarea_max" type="number">
+					</div>
+				</div>
+			</div>
+			<div id="textarea_tabs_advanced" class="ui-textarea-body">
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Placeholder Value
+						<span class="label-span-cover"> option</span>
+					</label>
+					<input id="input_textarea_placehold" type="text">
+				</div>
+				<div class="full-width-ui">
+					<div class="half-6width-ui">
+						<label class="full-width-label dialog-body-label">CSS Inline Style(s)
+							<span class="label-span-cover"> option</span>
+						</label>
+						<input id="input_textarea_style" type="text">
+					</div>
+					<div class="half-6width-ui-last">
+						<label class="full-width-label dialog-body-label">Element ID
+							<span class="label-span-cover"> option</span>
+						</label>
+						<input id="input_textarea_id" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_textarea_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_textarea_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>			
+	</div>
+
+	<div id="hidden_dialog" class="input-dialog" title="Hidden Field Properties" style="display: none">
+		<div class="full-width-ui">
+			<label class="full-width-label dialog-body-label">Name</label>
+			<input id="input_hidden_name" type="text">
+		</div>
+		<div class="full-width-ui">
+			<label class="full-width-label dialog-body-label">Value</label>
+			<input id="input_hidden_value" type="text">			
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_hidden_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_hidden_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>			
+	</div>
+
+	<div id="ink_dialog" class="input-dialog" title="Ink Signature Properties" style="display: none">
+		<div id="ink_tabs">
+			<ul class="dialog-tab-ul">
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#ink_tabs_basic">Basic Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#ink_tabs_advacend">Advanced Settings</a></li>
+			</ul>
+			<div id="ink_tabs_basic" class="ui-ink-body">
+				<div class="full-width-ui">
+					<div class="half-width-ui">
+						<label class="full-width-label dialog-body-label">Name
+							<span class="label-span-cover"> (Required; make unique/descriptive)</span>
+						</label>
+						<input id="input_ink_name" type="text">
+						<label class="full-width-label dialog-body-label">Field Width
+							<span class="label-span-cover"> (in pixels)</span>
+						</label>
+						<input id="input_ink_width" type="number">
+					</div>
+					<div class="half-width-ui-last">
+						<label class="full-width-label dialog-body-label">Element ID
+							<span class="label-span-cover"> (Required; make unique)</span>
+						</label>
+						<input id="input_ink_id" type="text">
+						<label class="full-width-label dialog-body-label">Field Height
+							<span class="label-span-cover"> (in pixels)</span>
+						</label>
+						<input id="input_ink_height" type="number">	
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Caption
+						<span class="label-span-cover"> (optional; Text below sigature in resulting image)</span>
+					</label>
+					<input id="input_ink_caption" type="text">
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Validation: Signature Required?</label>
+					<select id="select_ink_signature" class="dialog-selection-select">
+						<option value="false">No: Unsigned OK</option>
+						<option value="true">Yes: Signature needed</option>
+					</select>
+				</div>					
+			</div>
+			<div id="ink_tabs_advacend" class="ui-ink-body">
+				<div class="full-width-ui">
+					<div class="half-width-ui">
+						<label class="full-width-label dialog-body-label">Clear Button</label>
+						<select id="select_ink_clearBtn" class="dialog-selection-select">
+							<option value="false">No</option>
+							<option value="true">Yes</option>
+						</select>
+						<label class="full-width-label dialog-body-label">Background Color</label>
+						<input id="input_ink_bg" type="text">
+						<label class="full-width-label dialog-body-label">CSS Class
+							<span class="label-span-cover"> (optional; for canvas or div elements)</span>
+						</label>
+						<input id="input_ink_css" type="text">
+					</div>
+					<div class="half-width-ui-last">
+						<label class="full-width-label dialog-body-label">Clear Button Text</label>
+						<input id="input_ink_clearText" type="text">
+						<label class="full-width-label dialog-body-label">Signature Color</label>
+						<input id="input_ink_fg" type="text">
+						<label class="full-width-label dialog-body-label">Ink Signature Image File Name</label>
+						<input id="input_ink_image" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-footer">
+			<button id="input_ink_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_ink_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>						
+	</div>
+
+	<div id="date_dialog" class="input-dialog" title="Date Picker Properties" style="display: none">
+		<div class="full-width-ui ui-date-body">
+			<div class="half-width-ui">
+				<label class="full-width-label dialog-body-label">Name
+					<span class="label-span-cover"> (Required; make unique/descriptive)</span>
+				</label>
+				<input id="input_date_name" type="text">
+				<label class="full-width-label dialog-body-label">Display Date Format (help)</label>
+				<input id="input_date_format" type="text">
+				<label class="full-width-label dialog-body-label">Submitted Date Format (help)</label>
+				<input id="input_date_submitted" type="text">
+			</div>
+			<div class="half-width-ui-last">
+				<label class="full-width-label dialog-body-label">Element ID
+					<span class="label-span-cover"> (Required; make unique)</span>
+				</label>
+				<input id="input_date_id" type="text">
+				<label class="full-width-label dialog-body-label">Initial Value</label>
+				<input id="input_date_init" type="text">
+				<label class="full-width-label dialog-body-label">Validation: Date Required?</label>
+				<select id="select_date_required" class="dialog-selection-select">
+					<option value="false">No: Empty is OK</option>
+					<option value="true">Yes: Date is needed</option>
+				</select>
+			</div>
+		</div>
+		<div class="ui-dialog-footer" class="dialog-selection-select">
+			<button id="input_date_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_date_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="file_dialog" class="input-dialog" title="File Upload Properties" style="display: none">
+		<div id="file_dialog_body">
+			<div class="full-width-ui">
+				<label class="dialog-body-label">Field Name</label>
+				<input id="input_file_name" type="text">
+			</div>				
+		</div>			
+		<div class="ui-dialog-footer">
+			<button id="input_file_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_file_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="geo_dialog" class="input-dialog" title="Geographic Location Properties" style="display: none">
+		<div class="ui-geo-body">
+			<div class="full-width-ui">
+				<p class="full-width-label dialog-body-label label-span-cover">Inserts hidden form fields that capture the form vieweŕs latitude, longitude, and address (as best as posible and only if possible). The viewer may be prompted to approve location detection. This feature only works on devices and in web browsers that support geographic location detection.</p>
+				</div>
+				<div class="full-width-ui">
+					<div class="half-width-ui">
+						<label class="full-width-label dialog-body-label">Base Name
+							<span class="label-span-cover"> (Required)</span>
+						</label>
+						<input id="input_geo_name" type="text">
+					</div>
+					<div class="half-width-ui-last">
+						<label class="full-width-label dialog-body-label">Element ID
+							<span class="label-span-cover">  (Required; make unique)</span>
+						</label>
+						<input id="input_geo_id" type="text">
+					</div>
+				</div>
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_geo_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_geo_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="selection_dialog" class="input-dialog" title="Selection Field Properties" style="display: none">
+		<div id="selection_tabs">
+			<ul class="dialog-tab-ul">
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#selection_tabs_basic">Basic Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#selection_tabs_validation">Validation Settings</a></li>
+				<li class="dialog-tab-li"><a class="dialog-tab-a" href="#selection_tabs_advance">Advanced Settings</a></li>
+			</ul>
+			<div id="selection_tabs_basic" class="ui-selection-body">
+				<div class="full-width-ui">
+					<label class="dialog-body-label">Name</label>					
+					<input id="input_selection_name" class="dialog-oneline-input" type="text">
+				</div>
+				<div class="full-width-ui">
+					<label class="dialog-body-label">Selected Value</label>
+					<input id="input_selection_value" class="dialog-oneline-input" type="text">
+				</div>
+				<div class="full-width-ui">
+					<label class="dialog-body-label">Available Selection Options</label>
+				</div>
+				<div class="full-width-ui">
+					<div class="dialog-selection-option">
+						<div class="half-width-ui">
+							<label class="dialog-body-label">Text</label>
+							<input id="input_selection_text" type="text">
+							<select id="select_sel_text" class="ui-sel-margin" size="5"></select>
+						</div>
+						<div class="half-width-ui-last">
+							<label class="dialog-body-label">Value</label>
+							<input id="input_selection_option" type="text">
+							<select id="select_sel_value" class="ui-sel-margin" size="5"></select>
+						</div>
+					</div>
+					<div class="dialog-selection-dirBtn">
+						<button class="dialog-selection-button ui-dialog-button" id="button_selection_add">Add</button>
+						<button class="dialog-selection-button ui-dialog-button" id="button_selection_modify">Modify</button>
+						<button class="dialog-selection-button ui-dialog-button" id="button_selection_up">Up</button>
+						<button class="dialog-selection-button ui-dialog-button" id="button_selection_down">Down</button>
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<div class="selectioin-default-div">
+						<button id="button_selection_default" class="dialog-selection-default ui-dialog-button">Set as selected value</button>
+					</div>
+					<div class="selectioin-delete-div">
+						<button id="button_selection_delete" class="dialog-selection-delete ui-dialog-button">Delete</button>
+					</div>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Pre-configured List Options</label>
+				</div>
+				<div class="full-width-ui">
+					<div class="half-3width-ui">
+						<button id="button_selection_fill" class="dialog-selection-fill ui-dialog-button">Fill Option List with:</button>
+					</div>
+					<div class="half-3width-ui-last">
+						<select id="select_selectin_fill" class="dialog-selection-select">
+							<option value="country">Country Names</option>
+							<option value="state-fullName">US/Canada State/Province Names</option>
+							<option value="state-code">US State/Province 2-Letter Codes</option>
+						</select>
+					</div>						
+				</div>					
+			</div>
+			<div id="selection_tabs_validation" class="ui-selection-body">
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Required?</label>
+					<select id="select_selection_required" class="dialog-selection-select">
+						<option value="false">No: Selecting an Empty Value is OK</option>
+						<option value="true">Yes: Selecting Some value is required</option>
+					</select>
+				</div>					
+			</div>
+			<div id="selection_tabs_advance" class="ui-selection-body">
+				<div class="full-width-ui">
+					<input id="input_selection_multiple" class="dialog-checkbox" type="checkbox">
+					<label class="dialog-body-label">Allow multiple selections</label>
+				</div>
+				<div class="full-width-ui">
+					<label class="full-width-label dialog-body-label">Height
+						<span class="label-span-cover">  (lines tall; when multiple selections are allowed)</span>
+					</label>
+					<input id="input_selection_height" class="dialog-selection-height" type="number">
+				</div>
+				<div class="full-width-ui">
+					<div class="ui-selection-style">
+						<label class="full-width-label dialog-body-label">CSS Inline Style(s)
+							<span class="label-span-cover"> optional</span>
+						</label>
+						<input id="input_selection_style" type="text">
+					</div>
+					<div class="ui-selection-id">
+						<label class="full-width-label dialog-body-label">Element ID
+							<span class="label-span-cover"> optional</span>
+						</label>
+						<input id="input_selection_id" type="text">
+					</div>
+				</div>				
+			</div>
+		</div>			
+		<div class="ui-dialog-footer">
+			<button id="input_selection_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_selection_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<script>
+		$( document ).ready(function() {
+			$("#editor").attr('contenteditable','true');
+			CKEDITOR.replace( 'editor', {
+			});
+		});		
+	</script>
+</body>
+</html>
