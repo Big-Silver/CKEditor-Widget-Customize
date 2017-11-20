@@ -9,5 +9,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	// config.removePlugins = 'elementspath,save,image,flash,iframe,link,smiley,tabletools,find,pagebreak,templates,about,maximize,showblocks,newpage,language';	
 	// config.removeButtons = 'Copy,Cut,Paste,Undo,Redo,Print,Form,TextField,Textarea,Button,SelectAll,NumberedList,BulletedList,CreateDiv,Table,PasteText,PasteFromWord,Select,HiddenField';
-	config.extraPlugins = 'lux_forms,widget,widgetselection,dialog,lineutils,scayt,tableselection,wsc,simplebox,drag';
+	config.removeButtons = 'Image';
+	config.allowedContent = true;
+	config.extraPlugins = 'lux_forms,widget,widgetselection,dialog,lineutils,scayt,tableselection,wsc,simplebox,drag,doksoft_image';
+	config.imageUploadUrl = '/uploader/upload.php?type=Images';
 };

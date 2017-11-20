@@ -4,15 +4,16 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex, nofollow">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Drag and Drop Integration</title>
+
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/dialog.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../ckeditor.js"></script>
-	<!-- <script src="js/dnd.js"></script> -->
-	<!-- <script src="../plugins/lux_forms/plugin_orig.js"></script> -->
 	<style>
 		.datePicker_image {
 			width: 16px;
@@ -25,64 +26,94 @@
 		}
 	</style>
 </head>
-
 <body>
 	<div id="cke_background_cover">				
 	</div>
 	<div>
 		<div class="columns">		
-			<div class="contacts">
-				<h3>Content Blocks</h3>
-				<ul id="contactList">
-					<li>
-						<div class="contact h-card" data-contact="0" draggable="true" tabindex="0">
-							<img src="img/content-block/textfield.png" class="u-photo">Text</div>
-					</li>
-					<!-- <li>
-						<div class="contact h-card" data-contact="1" draggable="true" tabindex="0">
-							<img src="img/content-block/form.png" class="u-photo">Image</div>
-					</li> -->
-					<li>
-						<div class="contact h-card" data-contact="2" draggable="true" tabindex="0">
-							<img src="img/content-block/button.png" class="u-photo">Button</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="3" draggable="true" tabindex="0">
-							<img src="img/content-block/checkbox.png" class="u-photo">CheckBox</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="4" draggable="true" tabindex="0">
-							<img src="img/content-block/radio.png" class="u-photo">Radio Button</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="5" draggable="true" tabindex="0">
-							<img src="img/content-block/textarea.png" class="u-photo">TextArea</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="6" draggable="true" tabindex="0">
-							<img src="img/content-block/hiddenfield.png" class="u-photo">Hidden Field</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="7" draggable="true" tabindex="0">
-							<img src="img/content-block/ink.png" class="u-photo">Ink Signature</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="8" draggable="true" tabindex="0">
-							<img src="img/content-block/cal.png" class="u-photo">Date Picker</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="9" draggable="true" tabindex="0">
-							<img src="img/content-block/file.png" class="u-photo">File Upload</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="10" draggable="true" tabindex="0">
-							<img src="img/content-block/geo.png" class="u-photo">Capture Geo Location</div>
-					</li>
-					<li>
-						<div class="contact h-card" data-contact="11" draggable="true" tabindex="0">
-							<img src="img/content-block/select.png" class="u-photo">Selection Field</div>
-					</li>
-				</ul>			
+			<div class="contacts">				
+				<div class="tab-content clearfix" id="pannel-tab">
+					<ul class="nav nav-pills">
+						<li class="active">
+							<a href="#contact-panel">Content Blocks</a>
+						</li>
+						<li>
+							<a href="#layout-panel">Layout</a>
+						</li>
+					</ul>
+					<div class="tab-pane active" id="contact-panel">
+						<ul id="contactList">
+							<li>
+								<div class="contact h-card" data-contact="0" draggable="true" tabindex="0">
+									<img src="img/content-block/textfield.png" class="u-photo">Text</div>
+							</li>
+							 <li>
+								<div class="contact h-card" data-contact="1" draggable="true" tabindex="0">
+									<img src="img/content-block/image.png" class="u-photo">Image</div>
+							</li> 
+							<li>
+								<div class="contact h-card" data-contact="2" draggable="true" tabindex="0">
+									<img src="img/content-block/button.png" class="u-photo">Button</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="3" draggable="true" tabindex="0">
+									<img src="img/content-block/checkbox.png" class="u-photo">CheckBox</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="4" draggable="true" tabindex="0">
+									<img src="img/content-block/radio.png" class="u-photo">Radio Button</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="5" draggable="true" tabindex="0">
+									<img src="img/content-block/textarea.png" class="u-photo">TextArea</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="6" draggable="true" tabindex="0">
+									<img src="img/content-block/hiddenfield.png" class="u-photo">Hidden Field</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="7" draggable="true" tabindex="0">
+									<img src="img/content-block/ink.png" class="u-photo">Ink Signature</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="8" draggable="true" tabindex="0">
+									<img src="img/content-block/cal.png" class="u-photo">Date Picker</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="9" draggable="true" tabindex="0">
+									<img src="img/content-block/file.png" class="u-photo">File Upload</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="10" draggable="true" tabindex="0">
+									<img src="img/content-block/geo.png" class="u-photo">Capture Geo Location</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="11" draggable="true" tabindex="0">
+									<img src="img/content-block/select.png" class="u-photo">Selection Field</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="15" draggable="true" tabindex="0">
+									<img src="img/content-block/select.png" class="u-photo">Table</div>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-pane" id="layout-panel">
+						<ul id="layoutList">
+							<li>
+								<div class="contact h-card" data-contact="12" draggable="true" tabindex="0">
+									<img src="img/content-block/textfield.png" class="u-photo">2 Layout</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="13" draggable="true" tabindex="0">
+									<img src="img/content-block/textfield.png" class="u-photo">3 Layout</div>
+							</li>
+							<li>
+								<div class="contact h-card" data-contact="14" draggable="true" tabindex="0">
+									<img src="img/content-block/textfield.png" class="u-photo">4 Layout</div>
+							</li>
+						</ul>
+					</div>
+				</div>						
 			</div>
 			<div class="editor">
 				<div cols="10" id="editor" name="editor" rows="10" >
@@ -106,13 +137,13 @@
 					<label class="dialog-body-label">Button Text
 						<span class="label-span-cover"> (e.g. "Submit Form")</span>
 					</label>
-					<input id="input_btn_name" type="text">
+					<input id="input_btn_value" type="text">
 				</div>
 				<div class="full-width-ui">
 					<label class="dialog-body-label">Button Name
 						<span class="label-span-cover"> (optional)</span>
 					</label>
-					<input id="input_btn_value" type="text">	
+					<input id="input_btn_name" type="text">						
 				</div>
 				<div class="full-width-ui">
 					<label class="full-width-label dialog-body-label">Type</label>
@@ -258,12 +289,20 @@
 				<input id="input_check_name" type="text">
 			</div>
 			<div class="full-width-ui">
-				<label class="dialog-body-label">Value</label>
-				<input id="input_check_value" type="text">
+				<div class="half-width-ui">
+					<label class="dialog-body-label">Value</label>
+					<input id="input_check_value" type="text">
+				</div>
+				<div class="half-width-ui-last">
+					<label class="dialog-body-label">Label
+						<span class="label-span-cover">option</span>
+					</label>
+					<input id="input_check_label" type="text">
+				</div>				
 			</div>
 			<div class="full-width-ui">
 				<input id="input_check_select" class="dialog-checkbox" type="checkbox">
-				<label class="dialog-body-label">Checked by default?</label>	
+				<label class="dialog-body-label">Checked by default?</label>
 			</div>
 			<div class="full-width-ui">
 				<label class="dialog-body-label full-width-label">Required?</label>
@@ -271,7 +310,7 @@
 				class="dialog-selection-select">
 					<option value="no">No: Unchecked OK</option>
 					<option value="yes">Yes: User must check this box</option>
-				</select>
+				</select>			
 			</div>
 		</div>
 		<div class="ui-dialog-footer">
@@ -290,8 +329,16 @@
 				<p class="dialog-body-label">Note: Use the same "Name" for all mutually-exclusive radio buttons in a group.</p>
 			</div>
 			<div class="full-width-ui">
-				<label class="dialog-body-label">Value</label>
-				<input id="input_radio_value" type="text">	
+				<div class="half-width-ui">
+					<label class="dialog-body-label">Value</label>
+					<input id="input_radio_value" type="text">
+				</div>
+				<div class="half-width-ui-last">
+					<label class="dialog-body-label">Label
+						<span class="label-span-cover">option</span>
+					</label>
+					<input id="input_radio_label" type="text">
+				</div>					
 			</div>
 			<div class="full-width-ui">					
 				<input id="input_radio_select" class="dialog-checkbox" type="checkbox">
@@ -524,21 +571,21 @@
 		<div class="ui-geo-body">
 			<div class="full-width-ui">
 				<p class="full-width-label dialog-body-label label-span-cover">Inserts hidden form fields that capture the form vieweŕs latitude, longitude, and address (as best as posible and only if possible). The viewer may be prompted to approve location detection. This feature only works on devices and in web browsers that support geographic location detection.</p>
+			</div>
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Base Name
+						<span class="label-span-cover"> (Required)</span>
+					</label>
+					<input id="input_geo_name" type="text">
 				</div>
-				<div class="full-width-ui">
-					<div class="half-width-ui">
-						<label class="full-width-label dialog-body-label">Base Name
-							<span class="label-span-cover"> (Required)</span>
-						</label>
-						<input id="input_geo_name" type="text">
-					</div>
-					<div class="half-width-ui-last">
-						<label class="full-width-label dialog-body-label">Element ID
-							<span class="label-span-cover">  (Required; make unique)</span>
-						</label>
-						<input id="input_geo_id" type="text">
-					</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">Element ID
+						<span class="label-span-cover">  (Required; make unique)</span>
+					</label>
+					<input id="input_geo_id" type="text">
 				</div>
+			</div>
 		</div>						
 		<div class="ui-dialog-footer">
 			<button id="input_geo_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
@@ -560,7 +607,7 @@
 				</div>
 				<div class="full-width-ui">
 					<label class="dialog-body-label">Selected Value</label>
-					<input id="input_selection_value" class="dialog-oneline-input" type="text">
+					<input id="input_selection_value" class="dialog-oneline-input" type="text" readonly="true">
 				</div>
 				<div class="full-width-ui">
 					<label class="dialog-body-label">Available Selection Options</label>
@@ -651,8 +698,133 @@
 		</div>
 	</div>
 
+	<div id="layout1_dialog" class="input-dialog" title="Layout-1 Properties" style="display: none">
+		<div class="ui-layout-body">
+			<div class="full-width-ui">
+				<label class="full-width-label dialog-body-label">Name</label>
+				<input id="input_layout1_name" type="text">
+			</div>
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Choose the style: </label>
+					<select id="layout1_style_selection" class="dialog-selection-select">
+						<option value="col-md">col-md-*</option>
+						<option value="col-lg">col-lg-*</option>
+						<option value="col-xs">col-xs-*</option>
+					</select>
+				</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">Height</label>
+					<input id="input_layout1_height" type="number">
+				</div>		
+			</div>
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_layout1_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_layout1_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="layout2_dialog" class="input-dialog" title="Layout-2 Properties" style="display: none">
+		<div class="ui-layout-body">
+			<div class="full-width-ui">
+				<label class="full-width-label dialog-body-label">Name</label>
+				<input id="input_layout2_name" type="text">
+			</div>
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Choose the style: </label>
+					<select id="layout2_style_selection" class="dialog-selection-select">
+						<option value="col-md">col-md-*</option>
+						<option value="col-lg">col-lg-*</option>
+						<option value="col-xs">col-xs-*</option>
+					</select>
+				</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">Height</label>
+					<input id="input_layout2_height" type="number">
+				</div>		
+			</div>
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_layout2_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_layout2_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="layout3_dialog" class="input-dialog" title="Layout-3 Properties" style="display: none">
+		<div class="ui-layout-body">
+			<div class="full-width-ui">
+				<label class="full-width-label dialog-body-label">Name</label>
+				<input id="input_layout3_name" type="text">
+			</div>
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Choose the style: </label>
+					<select id="layout3_style_selection" class="dialog-selection-select">
+						<option value="col-md">col-md-*</option>
+						<option value="col-lg">col-lg-*</option>
+						<option value="col-xs">col-xs-*</option>
+					</select>
+				</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">Height</label>
+					<input id="input_layout3_height" type="number">
+				</div>		
+			</div>
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_layout3_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_layout3_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="table_dialog" class="input-dialog" title="Table Properties" style="display: none">
+		<div class="ui-table-body">
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Name</label>
+					<input id="input_table_name" type="text">
+				</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">ID
+						<span class="label-span-cover"> optional</span>
+					</label>
+					<input id="input_table_id" type="text">
+				</div>
+			</div>
+			<div class="full-width-ui">
+				<input id="input_table_fullwidth" checked="checked" class="dialog-checkbox" type="checkbox">
+				<label class="dialog-body-label">Width: 100%</label>
+			</div>
+			<div class="full-width-ui">
+				<div class="half-7width-ui">
+					<div class="half-width-ui">
+						<label class="full-width-label dialog-body-label">Column</label>
+						<input id="input_table_col" type="number">
+					</div>
+					<div class="half-width-ui-last">
+						<label class="full-width-label dialog-body-label">Row</label>
+						<input id="input_table_row" type="number">
+					</div>
+				</div>
+				<div class="half-7width-ui-last">
+					<label class="full-width-label dialog-body-label">Padding</label>
+					<input id="input_table_padding" type="number">
+				</div>
+			</div>			
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_table_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_table_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
 	<script>
 		$( document ).ready(function() {
+			$("#pannel-tab").tabs({
+				active: 0
+			});
 			$("#editor").attr('contenteditable','true');
 			CKEDITOR.replace( 'editor', {
 			});

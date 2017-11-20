@@ -1,3 +1,7 @@
+.highlight {
+
+}
+
 .input-dialog {
 	padding: 0! important;
 }
@@ -107,6 +111,7 @@
 .dialog-tab-a {
     color: #002242! important;
     padding: 0.8em 1em! important;
+    border: none! important;
 }
 
 .ui-dialog-btn {
@@ -154,6 +159,14 @@
 
 .ui-geo-body {
     height: 190px;
+}
+
+.ui-layout-body {
+    height: 170px;
+}
+
+.ui-table-body {
+    height: 200px
 }
 
 .ui-dialog-ok {    
