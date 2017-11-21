@@ -37,6 +37,12 @@
     overflow: auto;*/
 }
 
+
+.tab-panel {
+    height: 855px! important;
+    overflow: auto! important;
+}
+
 #contactList, #layoutList {
     list-style-type: none;
     margin: 0 !important;
@@ -116,5 +122,5 @@
 }
 
 .h-card {
-    height: 100%! important
+    height: 100%! important;
 };

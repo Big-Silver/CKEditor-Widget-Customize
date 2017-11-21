@@ -169,6 +169,10 @@
     height: 200px
 }
 
+.ui-email-body {
+    height: 170px
+}
+
 .ui-dialog-ok {    
     color: #fff;
     background: #09863e;

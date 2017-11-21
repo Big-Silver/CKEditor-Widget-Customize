@@ -41,7 +41,7 @@
 							<a href="#layout-panel">Layout</a>
 						</li>
 					</ul>
-					<div class="tab-pane active" id="contact-panel">
+					<div class="tab-panel" id="contact-panel">
 						<ul id="contactList">
 							<li>
 								<div class="contact h-card" data-contact="0" draggable="true" tabindex="0">
@@ -95,9 +95,13 @@
 								<div class="contact h-card" data-contact="15" draggable="true" tabindex="0">
 									<img src="img/content-block/select.png" class="u-photo">Table</div>
 							</li>
+							<li>
+								<div class="contact h-card" data-contact="16" draggable="true" tabindex="0">
+									<img src="img/content-block/select.png" class="u-photo">Email</div>
+							</li>
 						</ul>
 					</div>
-					<div class="tab-pane" id="layout-panel">
+					<div class="tab-panel" id="layout-panel">
 						<ul id="layoutList">
 							<li>
 								<div class="contact h-card" data-contact="12" draggable="true" tabindex="0">
@@ -800,11 +804,11 @@
 			<div class="full-width-ui">
 				<div class="half-7width-ui">
 					<div class="half-width-ui">
-						<label class="full-width-label dialog-body-label">Column</label>
+						<label class="full-width-label dialog-body-label">Columns</label>
 						<input id="input_table_col" type="number">
 					</div>
 					<div class="half-width-ui-last">
-						<label class="full-width-label dialog-body-label">Row</label>
+						<label class="full-width-label dialog-body-label">Rows</label>
 						<input id="input_table_row" type="number">
 					</div>
 				</div>
@@ -817,6 +821,31 @@
 		<div class="ui-dialog-footer">
 			<button id="input_table_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
 			<button id="input_table_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
+		</div>
+	</div>
+
+	<div id="email_dialog" class="input-dialog" title="Email Properties" style="display: none">
+		<div class="ui-email-body">
+			<div class="full-width-ui">
+				<div class="half-width-ui">
+					<label class="full-width-label dialog-body-label">Name</label>
+					<input id="input_email_name" type="text">
+				</div>
+				<div class="half-width-ui-last">
+					<label class="full-width-label dialog-body-label">ID
+						<span class="label-span-cover"> optional</span>
+					</label>
+					<input id="input_email_id" type="text">
+				</div>
+			</div>
+			<div class="full-width-ui">
+				<label class="full-width-label dialog-body-label">Placeholder Name</label>
+				<input id="input_email_placeholder" type="text">
+			</div>			
+		</div>						
+		<div class="ui-dialog-footer">
+			<button id="input_email_ok" class="ui-dialog-ok ui-dialog-btn">OK</button>
+			<button id="input_email_cancel" class="ui-dialog-cancel ui-dialog-btn">Cancel</button>
 		</div>
 	</div>
 

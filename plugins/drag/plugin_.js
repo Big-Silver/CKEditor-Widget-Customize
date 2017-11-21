@@ -1133,6 +1133,8 @@ function dialogValidation(ele) {
 			break;
 		case "Selection":
 			break;
+		case "Email":
+			break;
 		default:
 			return;
 	};

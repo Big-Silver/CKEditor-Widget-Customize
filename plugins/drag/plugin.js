@@ -16,7 +16,8 @@ var CONTACTS = [
 	{ type: 'Layout1', name: 'layout1'},
 	{ type: 'Layout2', name: 'layout2'},
 	{ type: 'Layout3', name: 'layout3'},
-	{ type: 'Table', name: 'table'}
+	{ type: 'Table', name: 'table'},
+	{ type: 'Email', name: 'email', value: 'email@address.com'}
 ];
 
 var maps = {"province_list":["Armed Forces Americas","Armed Forces Europe: Middle East, & Canada","Alaska","Alabama","Armed Forces Pacific","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Federated States of Micronesia","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Marshall Islands","Michigan","Minnesota","Missouri","Northern Mariana Islands","Mississippi","Montana","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Palau","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","West Virginia","Wisconsin","Wyoming","Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland","Nova Scotia","Nunavut","Ontario","Prince Edward Island","Quebec","Saskatchewan","Northwest Territories","Yukon Territory"],"state_2":["AA","AE","AK","AL","AP","AR","AS","AZ","CA","CO","CT","DC","DE","FL","FM","GA","GU","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MP","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WV","WI","WY"],"province_map":{"Puerto Rico":"PR","North Dakota":"ND","Delaware":"DE","District of Columbia":"DC","Ontario":"ON","West Virginia":"WV","Oregon":"OR","Connecticut":"CT","Colorado":"CO","British Columbia":"BC","Newfoundland":"NL","Nova Scotia":"NS","Missouri":"MO","Yukon Territory":"YT","Nevada":"NV","Virginia":"VA","Montana":"MT","New Mexico":"NM","New Jersey":"NJ","Oklahoma":"OK","Virgin Islands":"VI","Mississippi":"MS","North Carolina":"NC","Kansas":"KS","Alaska":"AK","Armed Forces Europe: Middle East, & Canada":"AE","Quebec":"QC","Alabama":"AL","Massachusetts":"MA","Manitoba":"MB","Minnesota":"MN","Prince Edward Island":"PE","New York":"NY","Idaho":"ID","Saskatchewan":"SK","Wyoming":"WY","Michigan":"MI","Arkansas":"AR","Nunavut":"NU","Tennessee":"TN","Utah":"UT","New Brunswick":"NB","American Samoa":"AS","Hawaii":"HI","Nebraska":"NE","Washington":"WA","Maryland":"MD","Vermont":"VT","Alberta":"AB","Marshall Islands":"MH","Northern Mariana Islands":"MP","Arizona":"AZ","South Dakota":"SD","Northwest Territories":"NT","California":"CA","Armed Forces Pacific":"AP","Federated States of Micronesia":"FM","Maine":"ME","New Hampshire":"NH","Ohio":"OH","Palau":"PW","Rhode Island":"RI","Illinois":"IL","Florida":"FL","Louisiana":"LA","Armed Forces Americas":"AA","Kentucky":"KY","Texas":"TX","Pennsylvania":"PA","Wisconsin":"WI","Iowa":"IA","Georgia":"GA","South Carolina":"SC","Guam":"GU","Indiana":"IN"},"country_list":["United States","United Kingdom","Australia","Canada","Germany","Italy","India","Mexico","Afghanistan","Aland Islands","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Asia/Pacific Region","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Congo: The Democratic Republic of the","Cook Islands","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Europe","Falkland Islands (Malvinas)","Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran: Islamic Republic of","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Korea: Democratic People's Republic of","Korea: Republic of","Kuwait","Kyrgyzstan","Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libyan Arab Jamahiriya","Liechtenstein","Lithuania","Luxembourg","Macao","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia: Federated States of","Moldova: Republic of","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Northern Mariana Islands","Norway","Oman","Pakistan","Palau","Palestinian Territory","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russian Federation","Rwanda","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","Spain","Sri Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syrian Arab Republic","Taiwan","Tajikistan","Tanzania: United Republic of","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Virgin Islands: British","Virgin Islands: U.S.","Wallis and Futuna","Western Sahara","Yemen","Zambia","Zimbabwe"]};
@@ -72,121 +73,7 @@ function emailValidation(email) {
     return false;
 };
 
-function dialogValidation(ele) {
-	switch(ele) {
-		case "Text":
-			if($("#input_text_name").val() == "") {
-				alert("Name: cannot be empty");
-				return false;
-			};
-			if($("#input_text_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			if($("#select_text_validate").val() == "email" && $("#input_text_value").val()) {
-				if( !emailValidation($("#input_text_value").val()) ) {
-					alert("You have entered an invalid email address!");
-					return false;
-				};					
-			};			
-			break;
-		case "Image":
-			break;
-		case "Button":
-			if($("#input_btn_value").val() == "") {
-				alert("Button Text: cannot be empty");
-				return false;
-			};
-			if($("#input_btn_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};			
-			break;
-		case "CheckBox":
-			break;
-		case "Radio":
-			break;
-		case "TextArea":
-			if($("#input_textarea_name").val() == "") {
-				alert("Name: cannot be empty");
-				return false;
-			};
-			if($("#input_textarea_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};			
-			break;
-		case "HiddenField":
-			break;
-		case "Ink":
-			if($("#input_ink_name").val() == "") {
-				alert("Name: cannot be empty");
-				return false;
-			};
-			if($("#input_ink_id").val() == "") {
-				alert("Element ID: cannot be empty");
-				return false;
-			};
-			if($("#input_ink_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			break;
-		case "Date":
-			if($("#input_date_name").val() == "") {
-				alert("Name: cannot be empty");
-				return false;
-			};
-			if($("#input_date_id").val() == "") {
-				alert("Element ID: cannot be empty");
-				return false;
-			};
-			if($("#input_date_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			break;
-		case "File":
-			break;
-		case "Geo":
-			if($("#input_geo_name").val() == "") {
-				alert("Name: cannot be empty");
-				return false;
-			};
-			if($("#input_geo_id").val() == "") {
-				alert("Element ID: cannot be empty");
-				return false;
-			};
-			if($("#input_geo_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			break;
-		case "Selection":
-			if($("#input_selection_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			break;
-		case "Layout1":
-			break;
-		case "Layout2":
-			break;
-		case "Layout3":
-			break;
-		case "Table":
-			if($("#input_table_id").val().indexOf(' ') != -1) {
-				alert("You have to enter the valid ID.");
-				return false;
-			};
-			break;
-		default:
-			return;
-	};
-	return true;
-};
-
-CKEDITOR.config.height = 900;
+CKEDITOR.config.height = 800;
 CKEDITOR.config.contentsCss = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
 CKEDITOR.plugins.add( 'drag', {
 	requires: 'widget',
@@ -349,6 +236,11 @@ CKEDITOR.plugins.add( 'drag', {
 						'<table id="cke_ele_' + num + '"></table>' +
 					'</span>';
 					break;
+				case "Email":
+					evt.data.dataValue =
+					'<input class="simplebox-input" type="email" placeholder="' + contact.value + 
+					'" id="cke_ele_' + num + '" >';
+					break;
 				default:
 					evt.data.dataValue = "";
 					evt.data.dialog = 'textarea';
@@ -403,26 +295,6 @@ CKEDITOR.plugins.add( 'drag', {
 							$("#input_btn_id").val("");
 							break;
 						case "Image":
-							// $("#img_dialog").dialog({
-							// 	classes: {
-							// 		"ui-dialog": "ui-dialog-background",
-							// 	},
-							// 	open: function( event, ui ) {
-							// 		disableBackground();
-							// 	},
-							// 	close: function( event, ui ) {
-							// 		if(!isOkBtn) {
-							// 			var temp_id = "#cke_ele_" + num;
-							// 			removeEle(temp_id);	
-							// 		};		
-							// 		isOkBtn = false;		
-							// 		disableBackground();
-							// 		clearWidget();								
-							// 	}								
-							// });
-							// $("#input_img_src").val($(temp_ele_id).attr("src"));
-							// $("#input_img_width").val($(temp_ele_id).width());
-							// $("#input_img_height").val($(temp_ele_id).height());
 							CKEDITOR.instances['editor'].openDialog('doksoft_image');
 							break;
 						case "Text":
@@ -839,7 +711,33 @@ CKEDITOR.plugins.add( 'drag', {
 							$("#input_table_col").val("1");
 							$("#input_table_row").val("1");
 							$("#input_table_padding").val("5");
-							break;						
+							break;
+						case "Email":
+							$("#email_dialog").dialog({
+								minWidth: 420,
+								width: 420,
+								minHeight: 280,
+								height: 280,
+								classes: {
+									"ui-dialog": "ui-dialog-background",
+									"ui-dialog-titlebar": "ui-dialog-header"
+								},
+								open: function( event, ui ) {
+									disableBackground();
+								},
+								close: function( event, ui ) {
+									if(!isOkBtn) {
+										var temp_id = "#cke_ele_" + num;
+										removeEle(temp_id);	
+									};		
+									isOkBtn = false;
+									disableBackground();
+									clearWidget();								
+								}
+							});
+							$("#input_email_id").val("cke_ele_" + num);
+							$("#input_email_placeholder").val("email@address.com");
+							break;
 						default:
 							return;
 					};
@@ -864,7 +762,7 @@ CKEDITOR.on( 'instanceReady', function() {
 		
 		if ( dataTransfer.$.setDragImage ) {
 			dataTransfer.$.setDragImage( target.findOne( 'img' ).$, 0, 0 );
-		}
+		};
 	} );
 	CKEDITOR.document.getById( 'layoutList' ).on( 'dragstart', function( evt ) {
 		var target = evt.data.getTarget().getAscendant( 'div', true );
@@ -876,7 +774,7 @@ CKEDITOR.on( 'instanceReady', function() {
 		
 		if ( dataTransfer.$.setDragImage ) {
 			dataTransfer.$.setDragImage( target.findOne( 'img' ).$, 0, 0 );
-		}
+		};
 	} );								
 } );
 
@@ -885,11 +783,6 @@ CKEDITOR.on('dialogDefinition', function (e) {
 	var dialogName = e.data.name;
 	var dialogDefinition = e.data.definition;
 	var dialog = e.data.definition.dialog;
-	console.log("dialogDefinition", dialogName);
-	if ( dialogName == 'textfield' ) {
-		console.log("Image Upload");
-	};
-
 	dialog.on('show', function () {    
 		var element = this.getElement();
 		var labelledby = element.getAttribute('aria-labelledby');          
@@ -924,6 +817,25 @@ $("#input_img_cancel").click(function() {
  ********* TEXT **********
 *************************/
 
+// Validation
+function txtValidation() {
+	if($("#input_text_name").val() == "") {
+		alert("Name: cannot be empty");
+		return false;
+	};
+	if($("#input_text_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	if($("#select_text_validate").val() == "email" && $("#input_text_value").val()) {
+		if( !emailValidation($("#input_text_value").val()) ) {
+			alert("You have entered an invalid email address!");
+			return false;
+		};					
+	};
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_text_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
@@ -940,7 +852,7 @@ $("#input_text_ok").click(function() {
 	$("iframe").contents().find(sel_id).attr("placeholder", $("#input_text_placeholder").val());
 	$("iframe").contents().find(sel_id).attr("style", $("#input_text_style").val());
 	$("iframe").contents().find(sel_id).attr("id", $("#input_text_id").val());
-	if(dialogValidation("Text")) {
+	if(txtValidation()) {
 		isOkBtn = true;
 		$("#text_dialog").dialog("close");
 	};			
@@ -957,9 +869,23 @@ $("#select_text_validate").change(function(){
 		$("#input_text_placeholder").val("email@address.com");
 	};
 });
+
 /*************************
  ******* BUTTON **********
 *************************/
+
+// Validation
+function btnValidation() {
+	if($("#input_btn_value").val() == "") {
+		alert("Button Text: cannot be empty");
+		return false;
+	};
+	if($("#input_btn_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_btn_ok").click(function(){
@@ -985,7 +911,7 @@ $("#input_btn_ok").click(function(){
 	$("iframe").contents().find(sel_id).attr("style", $("#input_btn_style").val());
 	$("iframe").contents().find(sel_id).attr("class", $("#input_btn_class").val());
 	$("iframe").contents().find(sel_id).attr("id", $("#input_btn_id").val());
-	if(dialogValidation("Button")) {
+	if(btnValidation()) {
 		isOkBtn = true;
 		$("#btn_dialog").dialog("close");			
 	};	
@@ -1000,6 +926,11 @@ $("#input_btn_cancel").click(function() {
  ******* CHECKBOX ******** 
 *************************/
 
+// Validation
+function checkValidation() {
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_check_ok").click(function() {
 	var sel_id 			= "#cke_ele_" + num;
@@ -1013,7 +944,7 @@ $("#input_check_ok").click(function() {
 		$("iframe").contents().find(sel_id).attr("checked", "checked");
 	if($("#select_check_required").val() == "yes")
 		$("iframe").contents().find(sel_id).attr("class", "validate[required]");
-	if(dialogValidation("CheckBox")) {
+	if(checkValidation()) {
 		isOkBtn = true;
 		$("#check_dialog").dialog("close");
 	};		
@@ -1028,6 +959,11 @@ $("#input_check_cancel").click(function() {
  ******* RADIO BUTTON ******** 
 *****************************/
 
+// Validation
+function radioValidation() {
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_radio_ok").click(function() {
 	var sel_id 			= "#cke_ele_" + num;
@@ -1041,7 +977,7 @@ $("#input_radio_ok").click(function() {
 		$("iframe").contents().find(sel_id).attr("checked", "checked");
 	if($("#input_radio_required").is(':checked'))
 		$("iframe").contents().find(sel_id).attr("class", "validate[required]");
-	if(dialogValidation("Radio")) {
+	if(radioValidation()) {
 		isOkBtn = true;
 		$("#radio_dialog").dialog("close");
 	};		
@@ -1056,6 +992,19 @@ $("#input_radio_cancel").click(function() {
  ******* TEXTAREA ******** 
 *************************/
 
+// Validation
+function txtAreaVlidation() {
+	if($("#input_textarea_name").val() == "") {
+		alert("Name: cannot be empty");
+		return false;
+	};
+	if($("#input_textarea_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_textarea_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
@@ -1069,7 +1018,7 @@ $("#input_textarea_ok").click(function() {
 	$("iframe").contents().find(sel_id).text($("#input_textarea_value").val());
 	$("iframe").contents().find(sel_id).attr("style", $("#input_textarea_style").val());
 	$("iframe").contents().find(sel_id).attr("id", $("#input_textarea_id").val());
-	if(dialogValidation("TextArea")) {
+	if(txtAreaVlidation()) {
 		isOkBtn = true;
 		$("#textarea_dialog").dialog("close");
 	};		
@@ -1084,12 +1033,17 @@ $("#input_textarea_cancel").click(function() {
  ******* HIDDEN FIELD ******** 
 *****************************/
 
+// Validation
+function hideFieldValidation() {
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_hidden_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
 	var hidden_decode = '<input type="hidden" name="' + $("#input_hidden_name").val() + '" value="' + $("#input_hidden_value").val() + '">';
 	$("iframe").contents().find(sel_id).attr("data-cke-realelement", encodeURIComponent(hidden_decode));
-	if(dialogValidation("HiddenField")) {
+	if(hideFieldValidation()) {
 		isOkBtn = true;
 		$("#hidden_dialog").dialog("close");
 	};
@@ -1103,6 +1057,23 @@ $("#input_hidden_cancel").click(function() {
 /******************************
  ******* INK SIGNATURE ******** 
 ******************************/
+
+// Validatin
+function inkValidation() {
+	if($("#input_ink_name").val() == "") {
+		alert("Name: cannot be empty");
+		return false;
+	};
+	if($("#input_ink_id").val() == "") {
+		alert("Element ID: cannot be empty");
+		return false;
+	};
+	if($("#input_ink_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_ink_ok").click(function() {
@@ -1132,7 +1103,7 @@ $("#input_ink_ok").click(function() {
 	if($("#select_ink_clearBtn").val() == "true") {
 		$("iframe").contents().find(sel_id).attr("lux_clear", "yes");	
 	};
-	if(dialogValidation("Ink")) {
+	if(inkValidation()) {
 		isOkBtn = true;
 		$("#ink_dialog").dialog("close");
 	};
@@ -1146,6 +1117,23 @@ $("#input_ink_cancel").click(function() {
 /****************************
  ******* DATE PICKER ******** 
 ****************************/
+
+// Validation
+function dateValidation() {
+	if($("#input_date_name").val() == "") {
+		alert("Name: cannot be empty");
+		return false;
+	};
+	if($("#input_date_id").val() == "") {
+		alert("Element ID: cannot be empty");
+		return false;
+	};
+	if($("#input_date_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_date_ok").click(function() {
@@ -1169,7 +1157,7 @@ $("#input_date_ok").click(function() {
 	};
 	$("iframe").contents().find(sel_id).attr("id", $("#input_date_id").val());
 	clearWidget();
-	if(dialogValidation("Date")) {
+	if(dateValidation()) {
 		isOkBtn = true;
 		$("#date_dialog").dialog("close");
 	};		
@@ -1184,12 +1172,17 @@ $("#input_date_cancel").click(function() {
  ******* FILE UPLOAD ******** 
 ****************************/
 
+// Validation
+function fileValidation() {
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_file_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
 	$("iframe").contents().find(sel_id).attr("name", $("#input_file_name").val());		
 	$("iframe").contents().find(sel_id).attr("type", "file");
-	if(dialogValidation("File")) {
+	if(fileValidation()) {
 		isOkBtn = true;
 		$("#file_dialog").dialog("close");
 	};		
@@ -1204,6 +1197,23 @@ $("#input_file_cancel").click(function() {
  ******* CAPTURE GEO LOCATION ******** 
 *************************************/
 
+// Validation
+function geoValidation() {
+	if($("#input_geo_name").val() == "") {
+		alert("Name: cannot be empty");
+		return false;
+	};
+	if($("#input_geo_id").val() == "") {
+		alert("Element ID: cannot be empty");
+		return false;
+	};
+	if($("#input_geo_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_geo_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
@@ -1211,7 +1221,7 @@ $("#input_geo_ok").click(function() {
 	$("iframe").contents().find(sel_id).attr("id", $("#input_geo_id").val());
 	$("iframe").contents().find(sel_id).attr("x-getgeo", "1");
 	clearWidget();
-	if(dialogValidation("Geo")) {
+	if(geoValidation()) {
 		isOkBtn = true;
 		$("#geo_dialog").dialog("close");
 	};
@@ -1225,6 +1235,15 @@ $("#input_geo_cancel").click(function() {
 /********************************
  ******* SELECTION FIELD ******** 
 ********************************/
+
+// Validation
+function selValidation() {
+	if($("#input_selection_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_selection_ok").click(function() {
@@ -1251,7 +1270,7 @@ $("#input_selection_ok").click(function() {
 			text: select_text[i]
 		}));
 	};
-	if(dialogValidation("Selection")) {
+	if(selValidation()) {
 		isOkBtn = true;
 		$("#selection_dialog").dialog("close");
 	};		
@@ -1445,6 +1464,11 @@ $("#button_selection_default").click(function() {
  ****************** Layout 1 ********************
 **************************************************/
 
+// Validation
+function layout1Validation() {
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_layout1_ok").click(function() {
 	var sel_id = "#cke_ele_" + num;
@@ -1469,7 +1493,7 @@ $("#input_layout1_ok").click(function() {
 		$("iframe").contents().find(sel_ele_id).css("height", $("#input_layout1_height").val());
 		$("iframe").contents().find(sel_ele_id).css("border", "1px dotted gray");
 	};
-	if(dialogValidation("Layout1")) {
+	if(layout1Validation()) {
 		isOkBtn = true;
 		$("#layout1_dialog").dialog("close");
 	};
@@ -1483,6 +1507,11 @@ $("#input_layout1_cancel").click(function() {
 /*************************************************
  ****************** Layout 2 ********************
 **************************************************/
+
+// Validation
+function layout2Validation() {
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_layout2_ok").click(function() {
@@ -1508,7 +1537,7 @@ $("#input_layout2_ok").click(function() {
 		$("iframe").contents().find(sel_ele_id).css("height", $("#input_layout2_height").val());
 		$("iframe").contents().find(sel_ele_id).css("border", "1px dotted gray");
 	};
-	if(dialogValidation("Layout1")) {
+	if(layout2Validation()) {
 		isOkBtn = true;
 		$("#layout2_dialog").dialog("close");
 	};
@@ -1522,6 +1551,11 @@ $("#input_layout2_cancel").click(function() {
 /*************************************************
  ****************** Layout 3 ********************
 **************************************************/
+
+// Validation
+function layout3Validation() {
+	return true;
+};
 
 // Set the features of element using Input Dialog.
 $("#input_layout3_ok").click(function() {
@@ -1547,7 +1581,7 @@ $("#input_layout3_ok").click(function() {
 		$("iframe").contents().find(sel_ele_id).css("height", $("#input_layout3_height").val());
 		$("iframe").contents().find(sel_ele_id).css("border", "1px dotted gray");
 	};
-	if(dialogValidation("Layout3")) {
+	if(layout3Validation()) {
 		isOkBtn = true;
 		$("#layout3_dialog").dialog("close");
 	};
@@ -1563,6 +1597,15 @@ $("#input_layout3_cancel").click(function() {
  *********** TABLE *********** 
 *****************************/
 
+// Validation
+function tableValidation() {
+	if($("#input_table_id").val().indexOf(' ') != -1) {
+		alert("You have to enter the valid ID.");
+		return false;
+	};
+	return true;
+};
+
 // Set the features of element using Input Dialog.
 $("#input_table_ok").click(function() {
 	var sel_id 	= "#cke_ele_" + num;
@@ -1573,7 +1616,7 @@ $("#input_table_ok").click(function() {
 	for( var i = 0; i < cols; i++) {
 		content += '<tr>';
 		for( var j = 0; j < rows; j++ ){
-			content += '<td style="padding: ' + $("#input_table_padding").val() + 'px" >' + 'result ' +  j + '</td>';
+			content += '<td style="padding: ' + $("#input_table_padding").val() + 'px" > &nbsp;</td>';
 		};
 		content += '</tr>';
 	};
@@ -1583,7 +1626,7 @@ $("#input_table_ok").click(function() {
 		$("iframe").contents().find(sel_id).attr('width', '100%');
 	};
 	$("iframe").contents().find(sel_id).attr("id", $("#input_table_id").val());
-	if(dialogValidation("Radio")) {
+	if(tableValidation()) {
 		isOkBtn = true;
 		$("#table_dialog").dialog("close");
 	};		
@@ -1594,26 +1637,29 @@ $("#input_table_cancel").click(function() {
 	$("#table_dialog").dialog("close");
 });
 
+/*****************************
+ *********** Email *********** 
+*****************************/
 
-$(function() {
-	setTimeout(function() {
-		$('iframe').attr('id','cke_iframe');
-		var iframe = $('#cke_iframe')[0];
-		var doc = null;
-		if(iframe.contentDocument) doc = iframe.contentDocument;
-		else if(iframe.contentWindow) doc = iframe.contentWindow.document;
-		else if(iframe.document) doc = iframe.document;
-		console.log("doc: ", doc);
- 
-// if(doc == null) throw "Document not initialized";
+// Validation
+function emailValidation() {
+	return true;
+};
 
-// doc.open();
-// var script   = doc.createElement("script");
-// script.type  = "text/javascript";
-// script.src = 'http://www.abc/static/st.v2.js';
-// // script.text  = "alert('voila!');"
-// doc.appendChild(script);
-// doc.close();
-	}, 300);
-	
+// Set the features of element using Input Dialog.
+$("#input_email_ok").click(function() {
+	var sel_id 	= "#cke_ele_" + num;
+	$("iframe").contents().find(sel_id).attr("name", $("#input_email_name").val());
+	$("iframe").contents().find(sel_id).attr("id", $("#input_email_id").val());
+	$("iframe").contents().find(sel_id).attr("placeholder", $("#input_email_placeholder").val());
+	$("iframe").contents().find(sel_id).attr("type", "email");
+	if(emailValidation()) {
+		isOkBtn = true;
+		$("#email_dialog").dialog("close");
+	};		
+});
+
+// Close the dialog
+$("#input_email_cancel").click(function() {
+	$("#email_dialog").dialog("close");
 });
